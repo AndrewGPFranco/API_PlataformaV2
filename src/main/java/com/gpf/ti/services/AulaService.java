@@ -7,6 +7,8 @@ import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class AulaService {
@@ -43,5 +45,10 @@ public class AulaService {
     public List<Aula> obterAulas() {
         List<Aula> aulas = this.aulaRepository.findAll();
         return aulas;
+    }
+
+    public Optional<Aula> obterAulaPorId(Long id) {
+        Optional<Aula> aulaEncontrada = this.aulaRepository.findById(id);
+        return aulaEncontrada;
     }
 }

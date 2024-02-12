@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -41,4 +42,19 @@ public class AulaController {
         return new ResponseEntity<>(resposta, HttpStatus.OK);
     }
 
+    @GetMapping("/dados/aula/{id}")
+    public ResponseEntity<Map<String, Object>> obterAulaPeloId(@PathVariable Long id) {
+        Optional<Aula> aula = aulaService.obterAulaPorId(id);
+
+        if(aula.isEmpty()) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
+            return new ResponseEntity<>(response ,HttpStatus.NOT_FOUND);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("Aula Encontrada:", aula);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
