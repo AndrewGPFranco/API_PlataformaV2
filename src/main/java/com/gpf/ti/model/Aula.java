@@ -42,6 +42,8 @@ public class Aula {
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
 
+    public Aula() {}
+
     public Aula(
             String titulo,
             String descricao,
