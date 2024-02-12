@@ -39,6 +39,7 @@ public class Aula {
 
     @NotNull
     @Column(name = "categoria")
+    @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
 
     public Aula(

@@ -15,12 +15,12 @@ public class AulaService {
 
     public DadosAulaDto cadastrarAula(AulaDto dto){
         Aula aula = new Aula(
-                dto.getTitulo(),
-                dto.getDescricao(),
-                dto.getCadastro(),
-                dto.getDuracao(),
-                dto.getStatus(),
-                dto.getCategoria()
+                dto.titulo(),
+                dto.descricao(),
+                dto.cadastro(),
+                dto.duracao(),
+                dto.status(),
+                dto.categoria()
         );
 
         DadosAulaDto dadosAula = new DadosAulaDto(
