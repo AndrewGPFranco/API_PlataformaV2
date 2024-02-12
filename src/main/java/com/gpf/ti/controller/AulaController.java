@@ -36,6 +36,12 @@ public class AulaController {
     public ResponseEntity<Map<String, Object>> obterAulas() {
         List<Aula> aulas = aulaService.obterAulas();
 
+        if(aulas.isEmpty()) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Aviso:", "Não foi encontrado aulas no sistema!");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
         Map<String, Object> resposta = new HashMap<>();
         resposta.put("Aulas Encontradas: ", aulas);
 
