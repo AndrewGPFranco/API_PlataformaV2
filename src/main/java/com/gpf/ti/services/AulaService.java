@@ -7,9 +7,7 @@ import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
