@@ -1,6 +1,7 @@
 package com.gpf.ti.controller;
 
 import com.gpf.ti.dtos.AulaDto;
+import com.gpf.ti.dtos.AulaEditadaDto;
 import com.gpf.ti.dtos.DadosAulaDto;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
@@ -80,5 +81,21 @@ public class AulaController {
         response.put("Mensagem:", "Aula excluida com sucesso!");
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping("/dados/atualizar/{id}")
+    public ResponseEntity<Map<String, Object>> atualizarAula(@PathVariable Long id, @RequestBody AulaDto dto) {
+        AulaEditadaDto aulaAtualizada = aulaService.editarAula(dto, id);
+
+        if(aulaAtualizada != null) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Aula atualizada!", aulaAtualizada);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } else {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
     }
 }
