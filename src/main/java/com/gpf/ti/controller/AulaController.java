@@ -49,11 +49,29 @@ public class AulaController {
         if(aula.isEmpty()) {
             Map<String, Object> response = new HashMap<>();
             response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
-            return new ResponseEntity<>(response ,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
 
         Map<String, Object> response = new HashMap<>();
         response.put("Aula Encontrada:", aula);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/dados/aula/{id}")
+    public ResponseEntity<Map<String, Object>> deletarAulaPeloId(@PathVariable Long id) {
+        Optional<Aula> aula = aulaService.obterAulaPorId(id);
+
+        if(aula.isEmpty()) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        this.aulaService.deletarAula(id);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("Mensagem:", "Aula excluida com sucesso!");
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

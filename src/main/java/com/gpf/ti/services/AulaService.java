@@ -51,4 +51,8 @@ public class AulaService {
         Optional<Aula> aulaEncontrada = this.aulaRepository.findById(id);
         return aulaEncontrada;
     }
+
+    public void deletarAula(Long id) {
+        this.aulaRepository.deleteById(id);
+    }
 }
