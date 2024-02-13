@@ -1,6 +1,7 @@
 package com.gpf.ti.controller;
 
 import com.gpf.ti.dtos.DadosAutenticaoDto;
+import com.gpf.ti.dtos.DadosTokenJwtDto;
 import com.gpf.ti.model.Usuario;
 import com.gpf.ti.services.TokenService;
 import jakarta.validation.Valid;
@@ -25,10 +26,11 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticaoDto dados) {
-        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var authentication = manager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        var authentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
+        var tokenJwt = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+        return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt));
     }
 
 }
