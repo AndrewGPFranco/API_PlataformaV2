@@ -6,6 +6,7 @@ public record AulaEditadaDto(
         String titulo,
         String descricao,
         Integer duracao,
+        String imagem,
         Boolean status,
         CategoriaEnum categoria
 ) {}
