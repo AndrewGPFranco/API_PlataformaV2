@@ -26,6 +26,7 @@ public class AulaService {
                 dto.cadastro(),
                 dto.duracao(),
                 dto.imagem(),
+                dto.url(),
                 dto.status(),
                 dto.categoria()
         );
@@ -78,6 +79,7 @@ public class AulaService {
                     aulaEditada.getDescricao(),
                     aulaEditada.getDuracao(),
                     aulaEditada.getImagem(),
+                    aulaEditada.getUrl(),
                     aulaEditada.getStatus(),
                     aulaEditada.getCategoria()
             );

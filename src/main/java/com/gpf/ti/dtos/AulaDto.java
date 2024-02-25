@@ -10,6 +10,7 @@ public record AulaDto(
         Date cadastro,
         Integer duracao,
         String imagem,
+        String url,
         Boolean status,
         CategoriaEnum categoria
 ) {}
