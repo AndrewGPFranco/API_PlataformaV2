@@ -9,5 +9,4 @@ public class TiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TiApplication.class, args);
 	}
-
 }
