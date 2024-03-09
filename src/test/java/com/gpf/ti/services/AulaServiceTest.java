@@ -9,10 +9,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.when;
 
 class AulaServiceTest {
@@ -48,5 +51,16 @@ class AulaServiceTest {
         Optional<Aula> result = aulaService.obterAulaPorId(id);
 
         assertEquals(Optional.of(aula), result);
+    }
+
+    @Test
+    public void testeObterAulas() {
+        List<Aula> listaAulas = new ArrayList<>();
+
+        when(aulaRepository.findAll()).thenReturn(listaAulas);
+
+        List<Aula> result = aulaService.obterAulas();
+
+        assertIterableEquals(listaAulas, result);
     }
 }
