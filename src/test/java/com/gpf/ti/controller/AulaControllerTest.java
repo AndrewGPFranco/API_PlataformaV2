@@ -1,0 +1,55 @@
+package com.gpf.ti.controller;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gpf.ti.model.Aula;
+import com.gpf.ti.services.AulaService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AulaControllerTest {
+
+    MockMvc mvc;
+
+    @Mock
+    AulaService aulaService;
+
+    @Spy
+    @InjectMocks
+    AulaController controller;
+
+    ObjectMapper objMapper;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        mvc = MockMvcBuilders.standaloneSetup(controller).build();
+        objMapper = new ObjectMapper();
+    }
+
+    @Test
+    public void testeObterAulasRetornoIsOk() throws Exception {
+
+        Aula aula01 = new Aula(1L, "Como fazer testes no Spring");
+        Aula aula02 = new Aula(2L, "Como fazer testes no Spring");
+
+        List<Aula> aulas = new ArrayList<>();
+        aulas.add(aula01);
+        aulas.add(aula02);
+
+        Mockito.when(aulaService.obterAulas()).thenReturn(aulas);
+
+        mvc.perform(MockMvcRequestBuilders.get("/api/dados/aulas")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+}

@@ -52,6 +52,8 @@ public class Aula {
 
     public Aula() {}
 
+    public Aula(Long id, String nomeDaAula) {}
+
     public Aula(
             String titulo,
             String descricao,
