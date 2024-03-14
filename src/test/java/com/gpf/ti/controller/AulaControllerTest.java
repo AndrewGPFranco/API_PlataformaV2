@@ -9,7 +9,9 @@ import org.mockito.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -51,5 +53,16 @@ public class AulaControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/api/dados/aulas")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testeObterAulasVaziaOuNull() throws Exception {
+        List<Aula> aulas = new ArrayList<>();
+        Mockito.when(aulaService.obterAulas()).thenReturn(aulas);
+
+        mvc.perform(MockMvcRequestBuilders.get("/api/dados/aulas")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
