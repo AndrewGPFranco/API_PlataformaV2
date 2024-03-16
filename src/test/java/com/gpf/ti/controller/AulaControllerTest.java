@@ -1,6 +1,9 @@
 package com.gpf.ti.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gpf.ti.dtos.AulaDto;
+import com.gpf.ti.enums.CategoriaEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AulaControllerTest {
@@ -65,4 +69,26 @@ public class AulaControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
+    @Test
+    public void testeCadastrarAula() throws Exception {
+        AulaDto aula = new AulaDto(
+                "titulo",
+                "descrição",
+                new Date(),
+                10,
+                "urlImagem",
+                "url",
+                true,
+                CategoriaEnum.BACK_END
+        );
+
+        String bodyJson = objMapper.writer().writeValueAsString(aula);
+
+        mvc.perform(MockMvcRequestBuilders.post("/api/cadastro/aula")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(bodyJson))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+     }
 }
