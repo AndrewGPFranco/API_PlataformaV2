@@ -10,5 +10,6 @@ public record DadosAulaDto(
         Date cadastro,
         String imagem,
         Integer duracao,
-        CategoriaEnum categoria
+        CategoriaEnum categoria,
+        String tech
 ) {}

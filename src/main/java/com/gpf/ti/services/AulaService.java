@@ -28,7 +28,8 @@ public class AulaService {
                 dto.imagem(),
                 dto.url(),
                 dto.status(),
-                dto.categoria()
+                dto.categoria(),
+                dto.tech()
         );
 
         DadosAulaDto dadosAula = new DadosAulaDto(
@@ -37,7 +38,8 @@ public class AulaService {
                 aula.getCadastro(),
                 aula.getImagem(),
                 aula.getDuracao(),
-                aula.getCategoria()
+                aula.getCategoria(),
+                aula.getTech()
         );
 
         this.aulaRepository.save(aula);
@@ -81,12 +83,18 @@ public class AulaService {
                     aulaEditada.getImagem(),
                     aulaEditada.getUrl(),
                     aulaEditada.getStatus(),
-                    aulaEditada.getCategoria()
+                    aulaEditada.getCategoria(),
+                    aulaEditada.getTech()
             );
 
             return aula;
         }
 
         return null;
+    }
+
+    public List<Aula> buscarAulaPorTecnologia(String tech) {
+        List<Aula> aulas = aulaRepository.aulaPorTech(tech);
+        return aulas;
     }
 }

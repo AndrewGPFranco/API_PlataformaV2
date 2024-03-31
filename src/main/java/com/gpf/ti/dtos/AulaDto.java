@@ -12,5 +12,6 @@ public record AulaDto(
         String imagem,
         String url,
         Boolean status,
-        CategoriaEnum categoria
+        CategoriaEnum categoria,
+        String tech
 ) {}

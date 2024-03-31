@@ -98,4 +98,9 @@ public class AulaController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/aulas/tecnologia/{tech}")
+    public List<Aula> buscarAulaPorTecnologia(@PathVariable String tech) {
+        return aulaService.buscarAulaPorTecnologia(tech);
+    }
 }

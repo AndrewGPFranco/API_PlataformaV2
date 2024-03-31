@@ -9,5 +9,6 @@ public record AulaEditadaDto(
         String imagem,
         String url,
         Boolean status,
-        CategoriaEnum categoria
+        CategoriaEnum categoria,
+        String tech
 ) {}

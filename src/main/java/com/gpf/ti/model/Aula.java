@@ -46,6 +46,10 @@ public class Aula {
     private String url;
 
     @NotNull
+    @Column(name = "tech")
+    private String tech;
+
+    @NotNull
     @Column(name = "categoria")
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
@@ -62,7 +66,8 @@ public class Aula {
             String imagem,
             String url,
             Boolean status,
-            CategoriaEnum categoria
+            CategoriaEnum categoria,
+            String tech
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -72,5 +77,6 @@ public class Aula {
         this.url = url;
         this.status = status;
         this.categoria = categoria;
+        this.tech = tech;
     }
 }
