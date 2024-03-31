@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gpf.ti.dtos.AulaDto;
 import com.gpf.ti.enums.CategoriaEnum;
+import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -80,7 +81,8 @@ public class AulaControllerTest {
                 "urlImagem",
                 "url",
                 true,
-                CategoriaEnum.BACK_END
+                CategoriaEnum.BACK_END,
+                TechnologyEnum.HTML
         );
 
         String bodyJson = objMapper.writer().writeValueAsString(aula);

@@ -1,6 +1,7 @@
 package com.gpf.ti.dtos;
 
 import com.gpf.ti.enums.CategoriaEnum;
+import com.gpf.ti.enums.TechnologyEnum;
 
 import java.util.Date;
 
@@ -11,5 +12,5 @@ public record DadosAulaDto(
         String imagem,
         Integer duracao,
         CategoriaEnum categoria,
-        String tech
+        TechnologyEnum tech
 ) {}

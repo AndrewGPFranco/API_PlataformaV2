@@ -3,6 +3,7 @@ package com.gpf.ti.controller;
 import com.gpf.ti.dtos.AulaDto;
 import com.gpf.ti.dtos.AulaEditadaDto;
 import com.gpf.ti.dtos.DadosAulaDto;
+import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.springframework.http.HttpStatus;
@@ -100,7 +101,7 @@ public class AulaController {
     }
 
     @GetMapping("/aulas/tecnologia/{tech}")
-    public List<Aula> buscarAulaPorTecnologia(@PathVariable String tech) {
+    public List<Aula> buscarAulaPorTecnologia(@PathVariable TechnologyEnum tech) {
         return aulaService.buscarAulaPorTecnologia(tech);
     }
 }

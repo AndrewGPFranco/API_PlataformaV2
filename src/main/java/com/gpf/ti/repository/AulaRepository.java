@@ -1,5 +1,6 @@
 package com.gpf.ti.repository;
 
+import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,5 +13,5 @@ import java.util.List;
 public interface AulaRepository extends JpaRepository<Aula, Long> {
 
     @Query("SELECT p FROM Aula p WHERE p.tech = :tech")
-    List<Aula> aulaPorTech(@Param("tech") String tech);
+    List<Aula> aulaPorTech(@Param("tech") TechnologyEnum tech);
 }

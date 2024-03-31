@@ -1,6 +1,7 @@
 package com.gpf.ti.model;
 
 import com.gpf.ti.enums.CategoriaEnum;
+import com.gpf.ti.enums.TechnologyEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -47,7 +48,7 @@ public class Aula {
 
     @NotNull
     @Column(name = "tech")
-    private String tech;
+    private TechnologyEnum tech;
 
     @NotNull
     @Column(name = "categoria")
@@ -67,7 +68,7 @@ public class Aula {
             String url,
             Boolean status,
             CategoriaEnum categoria,
-            String tech
+            TechnologyEnum tech
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
