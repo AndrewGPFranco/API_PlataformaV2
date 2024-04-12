@@ -3,7 +3,6 @@ package com.gpf.ti.services;
 import com.gpf.ti.dtos.AulaDto;
 import com.gpf.ti.dtos.AulaEditadaDto;
 import com.gpf.ti.dtos.DadosAulaDto;
-import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
@@ -28,9 +27,7 @@ public class AulaService {
                 dto.duracao(),
                 dto.imagem(),
                 dto.url(),
-                dto.status(),
-                dto.categoria(),
-                dto.tech()
+                dto.status()
         );
 
         DadosAulaDto dadosAula = new DadosAulaDto(
@@ -38,9 +35,7 @@ public class AulaService {
                 aula.getDescricao(),
                 aula.getCadastro(),
                 aula.getImagem(),
-                aula.getDuracao(),
-                aula.getCategoria(),
-                aula.getTech()
+                aula.getDuracao()
         );
 
         this.aulaRepository.save(aula);
@@ -72,7 +67,6 @@ public class AulaService {
             aulaEditada.setTitulo(dto.titulo());
             aulaEditada.setDescricao(dto.descricao());
             aulaEditada.setDuracao(dto.duracao());
-            aulaEditada.setCategoria(dto.categoria());
             aulaEditada.setStatus(dto.status());
 
             aulaRepository.save(aulaEditada);
@@ -83,19 +77,12 @@ public class AulaService {
                     aulaEditada.getDuracao(),
                     aulaEditada.getImagem(),
                     aulaEditada.getUrl(),
-                    aulaEditada.getStatus(),
-                    aulaEditada.getCategoria(),
-                    aulaEditada.getTech()
+                    aulaEditada.getStatus()
             );
 
             return aula;
         }
 
         return null;
-    }
-
-    public List<Aula> buscarAulaPorTecnologia(TechnologyEnum tech) {
-        List<Aula> aulas = aulaRepository.aulaPorTech(tech);
-        return aulas;
     }
 }

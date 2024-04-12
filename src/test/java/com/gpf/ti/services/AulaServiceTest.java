@@ -1,6 +1,7 @@
 package com.gpf.ti.services;
 
 import com.gpf.ti.enums.CategoriaEnum;
+import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,8 +43,7 @@ class AulaServiceTest {
                 10,
                 "https://e1.pxfuel.com/desktop-wallpaper/458/360/desktop-wallpaper-nuxt-js-vuejs.jpg",
                 "https://www.youtube.com/embed/3dJnfvvX2ag?si=Y_AeDeVBLnmYdQEk",
-                true,
-                CategoriaEnum.BACK_END
+                true
         );
 
         when(aulaRepository.findById(id)).thenReturn(Optional.of(aula));
