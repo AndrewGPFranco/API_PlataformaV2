@@ -44,6 +44,14 @@ public class Aula {
     @Column(name = "url")
     private String url;
 
+    @NotNull
+    @Column(name = "tech")
+    private String tech;
+
+    @NotNull
+    @Column(name = "categoria")
+    private String categoria;
+
     public Aula() {}
 
     public Aula(Long id, String nomeDaAula) {}
@@ -55,7 +63,9 @@ public class Aula {
             Integer duracao,
             String imagem,
             String url,
-            Boolean status
+            Boolean status,
+            String tech,
+            String categoria
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -64,5 +74,7 @@ public class Aula {
         this.imagem = imagem;
         this.url = url;
         this.status = status;
+        this.tech = tech;
+        this.categoria = categoria;
     }
 }

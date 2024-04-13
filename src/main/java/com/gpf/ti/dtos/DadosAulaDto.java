@@ -7,5 +7,7 @@ public record DadosAulaDto(
         String descricao,
         Date cadastro,
         String imagem,
-        Integer duracao
+        Integer duracao,
+        String tech,
+        String categoria
 ) {}
