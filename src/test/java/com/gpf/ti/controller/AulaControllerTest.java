@@ -3,17 +3,13 @@ package com.gpf.ti.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gpf.ti.dtos.AulaDto;
-import com.gpf.ti.enums.CategoriaEnum;
-import com.gpf.ti.enums.TechnologyEnum;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -81,8 +77,8 @@ public class AulaControllerTest {
                 "urlImagem",
                 "url",
                 true,
-                CategoriaEnum.BACK_END,
-                TechnologyEnum.HTML
+                "vue",
+                "frontend"
         );
 
         String bodyJson = objMapper.writer().writeValueAsString(aula);

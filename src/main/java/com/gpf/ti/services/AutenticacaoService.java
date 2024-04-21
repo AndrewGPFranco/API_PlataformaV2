@@ -1,5 +1,6 @@
 package com.gpf.ti.services;
 
+import com.gpf.ti.model.Usuario;
 import com.gpf.ti.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,5 +19,9 @@ public class AutenticacaoService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByLogin(username);
+    }
+
+    public Usuario getUser(String login) throws UsernameNotFoundException {
+        return repository.getUsuario(login);
     }
 }

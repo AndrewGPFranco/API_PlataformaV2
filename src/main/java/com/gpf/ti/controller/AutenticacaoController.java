@@ -2,7 +2,9 @@ package com.gpf.ti.controller;
 
 import com.gpf.ti.dtos.DadosAutenticaoDto;
 import com.gpf.ti.dtos.DadosTokenJwtDto;
+import com.gpf.ti.dtos.DadosUsuarioIsAdmin;
 import com.gpf.ti.model.Usuario;
+import com.gpf.ti.services.AutenticacaoService;
 import com.gpf.ti.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +29,9 @@ public class AutenticacaoController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private AutenticacaoService autenticacaoService;
+
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticaoDto dados) {
         try {
@@ -41,6 +44,17 @@ public class AutenticacaoController {
             Map<String, Object> response = new HashMap<>();
             response.put("Erro", e.getMessage());
             return new ResponseEntity(response, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<DadosUsuarioIsAdmin> getUser(@RequestParam String login) {
+        try {
+            Usuario user = autenticacaoService.getUser(login);
+            DadosUsuarioIsAdmin usuarioRetornado = new DadosUsuarioIsAdmin(user.getAdmin());
+            return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
