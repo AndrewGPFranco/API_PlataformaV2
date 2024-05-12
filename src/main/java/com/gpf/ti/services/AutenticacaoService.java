@@ -24,4 +24,8 @@ public class AutenticacaoService implements UserDetailsService {
     public Usuario getUser(String login) throws UsernameNotFoundException {
         return repository.getUsuario(login);
     }
+
+    public Usuario getUserWithAdmin(String login) throws UsernameNotFoundException {
+        return repository.getUsuarioWithAdmin(login);
+    }
 }

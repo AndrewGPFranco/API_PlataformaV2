@@ -11,4 +11,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.login = :login")
     Usuario getUsuario(@Param("login") String login);
+
+    @Query("SELECT u FROM Usuario u WHERE u.login = :login AND u.admin = true")
+    Usuario getUsuarioWithAdmin(@Param("login") String login);
 }

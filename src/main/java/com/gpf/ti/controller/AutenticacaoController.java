@@ -39,7 +39,7 @@ public class AutenticacaoController {
             var authentication = manager.authenticate(authenticationToken);
 
             var tokenJwt = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt));
+            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt, dados.login()));
         } catch (AuthenticationException e) {
             Map<String, Object> response = new HashMap<>();
             response.put("Erro", e.getMessage());
@@ -51,6 +51,17 @@ public class AutenticacaoController {
     public ResponseEntity<DadosUsuarioIsAdmin> getUser(@RequestParam String login) {
         try {
             Usuario user = autenticacaoService.getUser(login);
+            DadosUsuarioIsAdmin usuarioRetornado = new DadosUsuarioIsAdmin(user.getAdmin());
+            return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/user/admin")
+    public ResponseEntity<DadosUsuarioIsAdmin> getUserAdmin(@RequestParam String login) {
+        try {
+            Usuario user = autenticacaoService.getUserWithAdmin(login);
             DadosUsuarioIsAdmin usuarioRetornado = new DadosUsuarioIsAdmin(user.getAdmin());
             return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
