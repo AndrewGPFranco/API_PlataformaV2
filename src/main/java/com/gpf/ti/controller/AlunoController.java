@@ -40,4 +40,14 @@ public class AlunoController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/findbyemail")
+    public ResponseEntity<Map<String, Aluno>> getStudentByEmail(@RequestParam String email) {
+        Aluno student = alunoService.findByEmail(email);
+
+        Map<String, Aluno> response = new HashMap<>();
+        response.put("Aluno encontrado:", student);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

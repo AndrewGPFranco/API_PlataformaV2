@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class AlunoService {
 
-    private AlunoRepository alunoRepository;
+    private final AlunoRepository alunoRepository;
 
     public AlunoService(AlunoRepository alunoRepository) {
         this.alunoRepository = alunoRepository;
@@ -21,11 +21,14 @@ public class AlunoService {
         AlunoDto alunoDto = new AlunoDto(aluno.getNome(), aluno.getNivel(), aluno.getEmail());
 
         alunoRepository.save(aluno);
-
         return alunoDto;
     }
 
     public List<Aluno> getAllStudents() {
         return alunoRepository.findAll();
+    }
+
+    public Aluno findByEmail(String email) {
+        return alunoRepository.findByEmail(email);
     }
 }
