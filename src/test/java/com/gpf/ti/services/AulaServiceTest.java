@@ -1,5 +1,7 @@
 package com.gpf.ti.services;
 
+import com.gpf.ti.enums.CategoryType;
+import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,9 +43,8 @@ class AulaServiceTest {
                 10,
                 "https://e1.pxfuel.com/desktop-wallpaper/458/360/desktop-wallpaper-nuxt-js-vuejs.jpg",
                 "https://www.youtube.com/embed/3dJnfvvX2ag?si=Y_AeDeVBLnmYdQEk",
-                true,
-                "react",
-                "frontend"
+                TechnologyType.JAVA,
+                CategoryType.BACKEND
         );
 
         when(aulaRepository.findById(id)).thenReturn(Optional.of(aula));

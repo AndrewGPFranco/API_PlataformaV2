@@ -1,6 +1,9 @@
 package com.gpf.ti.model;
 
+import com.gpf.ti.enums.CategoryType;
+import com.gpf.ti.enums.TechnologyType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -18,10 +21,12 @@ public class Aula {
 
     @NotNull
     @Column(name = "titulo")
+    @NotBlank
     private String titulo;
 
     @NotNull
     @Column(name = "descricao")
+    @NotBlank
     private String descricao;
 
     @NotNull
@@ -33,24 +38,24 @@ public class Aula {
     private Integer duracao;
 
     @NotNull
-    @Column(name = "status")
-    private Boolean status;
-
-    @NotNull
     @Column(name = "imagem")
+    @NotBlank
     private String imagem;
 
     @NotNull
     @Column(name = "url")
+    @NotBlank
     private String url;
 
     @NotNull
     @Column(name = "tech")
-    private String tech;
+    @Enumerated(EnumType.STRING)
+    private TechnologyType tech;
 
     @NotNull
     @Column(name = "categoria")
-    private String categoria;
+    @Enumerated(EnumType.STRING)
+    private CategoryType categoria;
 
     public Aula() {}
 
@@ -63,9 +68,8 @@ public class Aula {
             Integer duracao,
             String imagem,
             String url,
-            Boolean status,
-            String tech,
-            String categoria
+            TechnologyType tech,
+            CategoryType categoria
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -73,7 +77,6 @@ public class Aula {
         this.duracao = duracao;
         this.imagem = imagem;
         this.url = url;
-        this.status = status;
         this.tech = tech;
         this.categoria = categoria;
     }

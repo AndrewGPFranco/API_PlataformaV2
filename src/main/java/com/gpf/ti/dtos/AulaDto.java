@@ -1,5 +1,8 @@
 package com.gpf.ti.dtos;
 
+import com.gpf.ti.enums.CategoryType;
+import com.gpf.ti.enums.TechnologyType;
+
 import java.util.Date;
 
 public record AulaDto(
@@ -9,7 +12,6 @@ public record AulaDto(
         Integer duracao,
         String imagem,
         String url,
-        Boolean status,
-        String tech,
-        String categoria
+        TechnologyType tech,
+        CategoryType categoria
 ) {}

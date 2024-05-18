@@ -27,7 +27,6 @@ public class AulaService {
                 dto.duracao(),
                 dto.imagem(),
                 dto.url(),
-                dto.status(),
                 dto.tech(),
                 dto.categoria()
         );
@@ -71,7 +70,6 @@ public class AulaService {
             aulaEditada.setTitulo(dto.titulo());
             aulaEditada.setDescricao(dto.descricao());
             aulaEditada.setDuracao(dto.duracao());
-            aulaEditada.setStatus(dto.status());
 
             aulaRepository.save(aulaEditada);
 
@@ -81,7 +79,6 @@ public class AulaService {
                     aulaEditada.getDuracao(),
                     aulaEditada.getImagem(),
                     aulaEditada.getUrl(),
-                    aulaEditada.getStatus(),
                     aulaEditada.getTech(),
                     aulaEditada.getCategoria()
             );
