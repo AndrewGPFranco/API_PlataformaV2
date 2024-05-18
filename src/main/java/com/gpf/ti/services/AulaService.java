@@ -3,6 +3,7 @@ package com.gpf.ti.services;
 import com.gpf.ti.dtos.AulaDto;
 import com.gpf.ti.dtos.AulaEditadaDto;
 import com.gpf.ti.dtos.DadosAulaDto;
+import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
@@ -89,7 +90,7 @@ public class AulaService {
         return null;
     }
 
-    public List<Aula> buscarAulaPorTecnologia(String tech) {
+    public List<Aula> buscarAulaPorTecnologia(TechnologyType tech) {
         List<Aula> aulas = aulaRepository.aulaPorTech(tech);
         return aulas;
     }
