@@ -2,10 +2,12 @@ package com.gpf.ti.mappers;
 
 import com.gpf.ti.dtos.aluno.AlunoDto;
 import com.gpf.ti.model.Aluno;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AlunoMapper {
 
-    public static AlunoDto studentToAlunoDto(Aluno aluno) {
+    public AlunoDto studentToAlunoDto(Aluno aluno) {
         if ( aluno == null ) {
             return null;
         }
@@ -13,7 +15,7 @@ public class AlunoMapper {
         return student;
     }
 
-    public static Aluno alunoDtoToAluno(AlunoDto aluno) {
+    public Aluno alunoDtoToAluno(AlunoDto aluno) {
         if ( aluno == null ) {
             return null;
         }

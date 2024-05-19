@@ -12,14 +12,16 @@ import java.util.List;
 public class AlunoService {
 
     private final AlunoRepository alunoRepository;
+    private final AlunoMapper alunoMapper;
 
-    public AlunoService(AlunoRepository alunoRepository) {
+    public AlunoService(AlunoRepository alunoRepository, AlunoMapper alunoMapper) {
         this.alunoRepository = alunoRepository;
+        this.alunoMapper = alunoMapper;
     }
 
     public AlunoDto createStudent(AlunoDto dto) {
-        Aluno aluno = AlunoMapper.alunoDtoToAluno(dto);
-        AlunoDto alunoDto = AlunoMapper.studentToAlunoDto(aluno);
+        Aluno aluno = alunoMapper.alunoDtoToAluno(dto);
+        AlunoDto alunoDto = alunoMapper.studentToAlunoDto(aluno);
 
         alunoRepository.save(aluno);
         return alunoDto;

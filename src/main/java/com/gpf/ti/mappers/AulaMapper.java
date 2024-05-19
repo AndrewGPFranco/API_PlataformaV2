@@ -7,7 +7,7 @@ import com.gpf.ti.model.Aula;
 
 public class AulaMapper {
 
-    public static Aula aulaDtoToAula(AulaDto value) {
+    public Aula aulaDtoToAula(AulaDto value) {
         if(value == null) {
             return null;
         }
@@ -15,7 +15,7 @@ public class AulaMapper {
         return aula;
     }
 
-    public static AulaDto aulaToAulaDto(Aula value) {
+    public AulaDto aulaToAulaDto(Aula value) {
         if(value == null) {
             return null;
         }
@@ -23,7 +23,7 @@ public class AulaMapper {
         return aulaDto;
     }
 
-    public static DadosAulaDto aulaToDadosAulaDto (Aula value) {
+    public DadosAulaDto aulaToDadosAulaDto (Aula value) {
         if(value == null) {
             return null;
         }
@@ -31,7 +31,7 @@ public class AulaMapper {
         return dados;
     }
 
-    public static AulaEditadaDto aulaToAulaEditadaDto(Aula value) {
+    public AulaEditadaDto aulaToAulaEditadaDto(Aula value) {
         if(value == null) {
             return null;
         }

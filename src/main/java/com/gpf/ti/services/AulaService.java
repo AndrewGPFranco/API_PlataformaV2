@@ -16,14 +16,16 @@ import java.util.Optional;
 public class AulaService {
 
     private final AulaRepository aulaRepository;
+    private final AulaMapper aulaMapper;
 
-    public AulaService(AulaRepository aulaRepository) {
+    public AulaService(AulaRepository aulaRepository, AulaMapper aulaMapper) {
         this.aulaRepository = aulaRepository;
+        this.aulaMapper = aulaMapper;
     }
 
     public DadosAulaDto cadastrarAula(AulaDto dto){
-        Aula aula = AulaMapper.aulaDtoToAula(dto);
-        DadosAulaDto dadosAula = AulaMapper.aulaToDadosAulaDto(aula);
+        Aula aula = aulaMapper.aulaDtoToAula(dto);
+        DadosAulaDto dadosAula = aulaMapper.aulaToDadosAulaDto(aula);
 
         this.aulaRepository.save(aula);
         return dadosAula;
@@ -56,7 +58,7 @@ public class AulaService {
 
             aulaRepository.save(aulaEditada);
 
-            AulaEditadaDto aula = AulaMapper.aulaToAulaEditadaDto(aulaEditada);
+            AulaEditadaDto aula = aulaMapper.aulaToAulaEditadaDto(aulaEditada);
             return aula;
         }
 
