@@ -2,6 +2,8 @@ package com.gpf.ti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gpf.ti.dtos.aula.AulaDto;
+import com.gpf.ti.enums.CategoryType;
+import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,9 +77,8 @@ public class AulaControllerTest {
                 10,
                 "urlImagem",
                 "url",
-                true,
-                "vue",
-                "frontend"
+                TechnologyType.JAVA,
+                CategoryType.BACKEND
         );
 
         String bodyJson = objMapper.writer().writeValueAsString(aula);
