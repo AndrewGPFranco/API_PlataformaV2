@@ -5,6 +5,7 @@ public enum TechnologyType {
     JAVA,
     VUE,
     TYPESCRIPT,
-    SQL;
+    SQL,
+    DIVERSOS
 }
 

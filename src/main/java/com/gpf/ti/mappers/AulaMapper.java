@@ -4,7 +4,9 @@ import com.gpf.ti.dtos.aula.AulaDto;
 import com.gpf.ti.dtos.aula.AulaEditadaDto;
 import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.model.Aula;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AulaMapper {
 
     public Aula aulaDtoToAula(AulaDto value) {
