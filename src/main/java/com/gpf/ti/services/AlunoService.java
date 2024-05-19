@@ -1,6 +1,7 @@
 package com.gpf.ti.services;
 
-import com.gpf.ti.dtos.AlunoDto;
+import com.gpf.ti.dtos.aluno.AlunoDto;
+import com.gpf.ti.mappers.AlunoMapper;
 import com.gpf.ti.model.Aluno;
 import com.gpf.ti.repository.AlunoRepository;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class AlunoService {
     }
 
     public AlunoDto createStudent(AlunoDto dto) {
-        Aluno aluno = new Aluno(dto.nome(), dto.nivel(), dto.email());
-        AlunoDto alunoDto = new AlunoDto(aluno.getNome(), aluno.getNivel(), aluno.getEmail());
+        Aluno aluno = AlunoMapper.alunoDtoToAluno(dto);
+        AlunoDto alunoDto = AlunoMapper.studentToAlunoDto(aluno);
 
         alunoRepository.save(aluno);
         return alunoDto;

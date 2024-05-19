@@ -1,8 +1,8 @@
 package com.gpf.ti.controller;
 
-import com.gpf.ti.dtos.AulaDto;
-import com.gpf.ti.dtos.AulaEditadaDto;
-import com.gpf.ti.dtos.DadosAulaDto;
+import com.gpf.ti.dtos.aula.AulaDto;
+import com.gpf.ti.dtos.aula.AulaEditadaDto;
+import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;

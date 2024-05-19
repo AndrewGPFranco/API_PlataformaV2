@@ -1,8 +1,7 @@
 package com.gpf.ti.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gpf.ti.dtos.AulaDto;
+import com.gpf.ti.dtos.aula.AulaDto;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import org.junit.jupiter.api.BeforeEach;

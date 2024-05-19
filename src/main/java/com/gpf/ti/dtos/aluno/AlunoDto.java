@@ -1,4 +1,4 @@
-package com.gpf.ti.dtos;
+package com.gpf.ti.dtos.aluno;
 
 import com.gpf.ti.enums.LevelType;
 

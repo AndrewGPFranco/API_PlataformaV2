@@ -1,6 +1,6 @@
 package com.gpf.ti.controller;
 
-import com.gpf.ti.dtos.AlunoDto;
+import com.gpf.ti.dtos.aluno.AlunoDto;
 import com.gpf.ti.model.Aluno;
 import com.gpf.ti.services.AlunoService;
 import org.springframework.http.HttpStatus;

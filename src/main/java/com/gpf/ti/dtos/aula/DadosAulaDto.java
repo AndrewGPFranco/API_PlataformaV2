@@ -1,14 +1,16 @@
-package com.gpf.ti.dtos;
+package com.gpf.ti.dtos.aula;
 
 import com.gpf.ti.enums.CategoryType;
 import com.gpf.ti.enums.TechnologyType;
 
-public record AulaEditadaDto(
+import java.util.Date;
+
+public record DadosAulaDto(
         String titulo,
         String descricao,
-        Integer duracao,
+        Date cadastro,
         String imagem,
-        String url,
+        Integer duracao,
         TechnologyType tech,
         CategoryType categoria
 ) {}

@@ -1,9 +1,10 @@
 package com.gpf.ti.services;
 
-import com.gpf.ti.dtos.AulaDto;
-import com.gpf.ti.dtos.AulaEditadaDto;
-import com.gpf.ti.dtos.DadosAulaDto;
+import com.gpf.ti.dtos.aula.AulaDto;
+import com.gpf.ti.dtos.aula.AulaEditadaDto;
+import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.enums.TechnologyType;
+import com.gpf.ti.mappers.AulaMapper;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
@@ -21,29 +22,10 @@ public class AulaService {
     }
 
     public DadosAulaDto cadastrarAula(AulaDto dto){
-        Aula aula = new Aula(
-                dto.titulo(),
-                dto.descricao(),
-                dto.cadastro(),
-                dto.duracao(),
-                dto.imagem(),
-                dto.url(),
-                dto.tech(),
-                dto.categoria()
-        );
-
-        DadosAulaDto dadosAula = new DadosAulaDto(
-                aula.getTitulo(),
-                aula.getDescricao(),
-                aula.getCadastro(),
-                aula.getImagem(),
-                aula.getDuracao(),
-                aula.getTech(),
-                aula.getCategoria()
-        );
+        Aula aula = AulaMapper.aulaDtoToAula(dto);
+        DadosAulaDto dadosAula = AulaMapper.aulaToDadosAulaDto(aula);
 
         this.aulaRepository.save(aula);
-
         return dadosAula;
     }
 
@@ -74,16 +56,7 @@ public class AulaService {
 
             aulaRepository.save(aulaEditada);
 
-            AulaEditadaDto aula = new AulaEditadaDto(
-                    aulaEditada.getTitulo(),
-                    aulaEditada.getDescricao(),
-                    aulaEditada.getDuracao(),
-                    aulaEditada.getImagem(),
-                    aulaEditada.getUrl(),
-                    aulaEditada.getTech(),
-                    aulaEditada.getCategoria()
-            );
-
+            AulaEditadaDto aula = AulaMapper.aulaToAulaEditadaDto(aulaEditada);
             return aula;
         }
 
