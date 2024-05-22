@@ -5,6 +5,7 @@ import com.gpf.ti.dtos.aula.AulaEditadaDto;
 import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
+import com.gpf.ti.model.Curso;
 import com.gpf.ti.services.AulaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

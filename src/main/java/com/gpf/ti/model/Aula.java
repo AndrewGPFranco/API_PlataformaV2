@@ -57,6 +57,10 @@ public class Aula {
     @Enumerated(EnumType.STRING)
     private CategoryType categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "curso_id", nullable = false)
+    private Curso curso;
+
     public Aula() {}
 
     public Aula(Long id, String nomeDaAula) {}
