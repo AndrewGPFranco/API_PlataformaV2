@@ -78,7 +78,8 @@ public class AulaControllerTest {
                 "urlImagem",
                 "url",
                 TechnologyType.JAVA,
-                CategoryType.BACKEND
+                CategoryType.BACKEND,
+                "Curso de Vue"
         );
 
         String bodyJson = objMapper.writer().writeValueAsString(aula);

@@ -44,7 +44,8 @@ class AulaServiceTest {
                 "https://e1.pxfuel.com/desktop-wallpaper/458/360/desktop-wallpaper-nuxt-js-vuejs.jpg",
                 "https://www.youtube.com/embed/3dJnfvvX2ag?si=Y_AeDeVBLnmYdQEk",
                 TechnologyType.JAVA,
-                CategoryType.BACKEND
+                CategoryType.BACKEND,
+                "Curso de Vue"
         );
 
         when(aulaRepository.findById(id)).thenReturn(Optional.of(aula));

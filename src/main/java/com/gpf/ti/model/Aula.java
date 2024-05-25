@@ -57,9 +57,9 @@ public class Aula {
     @Enumerated(EnumType.STRING)
     private CategoryType categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id", nullable = false)
-    private Curso curso;
+    @NotNull
+    @Column(name = "curso")
+    private String curso;
 
     public Aula() {}
 
@@ -73,7 +73,8 @@ public class Aula {
             String imagem,
             String url,
             TechnologyType tech,
-            CategoryType categoria
+            CategoryType categoria,
+            String curso
     ) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -83,5 +84,6 @@ public class Aula {
         this.url = url;
         this.tech = tech;
         this.categoria = categoria;
+        this.curso = curso;
     }
 }

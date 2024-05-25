@@ -5,8 +5,8 @@ import com.gpf.ti.dtos.aula.AulaEditadaDto;
 import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.enums.TechnologyType;
 import com.gpf.ti.model.Aula;
-import com.gpf.ti.model.Curso;
 import com.gpf.ti.services.AulaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class AulaController {
     }
 
     @PostMapping("/cadastro/aula")
-    public ResponseEntity<Map<String, Object>> cadastrarAula(@RequestBody AulaDto dto) {
+    public ResponseEntity<Map<String, Object>> cadastrarAula(@RequestBody @Valid AulaDto dto) {
         DadosAulaDto dadosAula = aulaService.cadastrarAula(dto);
 
         Map<String, Object> resposta = new HashMap<>();

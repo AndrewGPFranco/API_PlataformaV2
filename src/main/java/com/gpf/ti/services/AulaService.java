@@ -32,14 +32,11 @@ public class AulaService {
     }
 
     public List<Aula> obterAulas() {
-        List<Aula> aulas = this.aulaRepository.findAll();
-
-        return aulas;
+        return this.aulaRepository.findAll();
     }
 
     public Optional<Aula> obterAulaPorId(Long id) {
-        Optional<Aula> aulaEncontrada = this.aulaRepository.findById(id);
-        return aulaEncontrada;
+        return this.aulaRepository.findById(id);
     }
 
     public void deletarAula(Long id) {
@@ -58,15 +55,13 @@ public class AulaService {
 
             aulaRepository.save(aulaEditada);
 
-            AulaEditadaDto aula = aulaMapper.aulaToAulaEditadaDto(aulaEditada);
-            return aula;
+            return aulaMapper.aulaToAulaEditadaDto(aulaEditada);
         }
 
         return null;
     }
 
     public List<Aula> buscarAulaPorTecnologia(TechnologyType tech) {
-        List<Aula> aulas = aulaRepository.aulaPorTech(tech);
-        return aulas;
+        return aulaRepository.aulaPorTech(tech);
     }
 }

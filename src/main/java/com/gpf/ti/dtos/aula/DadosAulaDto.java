@@ -12,5 +12,6 @@ public record DadosAulaDto(
         String imagem,
         Integer duracao,
         TechnologyType tech,
-        CategoryType categoria
+        CategoryType categoria,
+        String curso
 ) {}

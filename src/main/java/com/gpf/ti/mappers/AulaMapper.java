@@ -13,31 +13,27 @@ public class AulaMapper {
         if(value == null) {
             return null;
         }
-        Aula aula = new Aula(value.titulo(), value.descricao(), value.cadastro(), value.duracao(), value.imagem(), value.url(), value.tech(), value.categoria());
-        return aula;
+        return new Aula(value.titulo(), value.descricao(), value.cadastro(), value.duracao(), value.imagem(), value.url(), value.tech(), value.categoria(), value.curso());
     }
 
     public AulaDto aulaToAulaDto(Aula value) {
         if(value == null) {
             return null;
         }
-        AulaDto aulaDto = new AulaDto(value.getTitulo(), value.getDescricao(), value.getCadastro(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria());
-        return aulaDto;
+        return new AulaDto(value.getTitulo(), value.getDescricao(), value.getCadastro(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria(), value.getCurso());
     }
 
     public DadosAulaDto aulaToDadosAulaDto (Aula value) {
         if(value == null) {
             return null;
         }
-        DadosAulaDto dados = new DadosAulaDto(value.getTitulo(), value.getDescricao(), value.getCadastro(), value.getImagem(), value.getDuracao(), value.getTech(), value.getCategoria());
-        return dados;
+        return new DadosAulaDto(value.getTitulo(), value.getDescricao(), value.getCadastro(), value.getImagem(), value.getDuracao(), value.getTech(), value.getCategoria(), value.getCurso());
     }
 
     public AulaEditadaDto aulaToAulaEditadaDto(Aula value) {
         if(value == null) {
             return null;
         }
-        AulaEditadaDto aula = new AulaEditadaDto(value.getTitulo(), value.getDescricao(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria());
-        return aula;
+        return new AulaEditadaDto(value.getTitulo(), value.getDescricao(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria());
     }
 }
