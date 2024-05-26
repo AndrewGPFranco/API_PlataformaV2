@@ -10,5 +10,6 @@ public record AulaEditadaDto(
         String imagem,
         String url,
         TechnologyType tech,
-        CategoryType categoria
+        CategoryType categoria,
+        String curso
 ) {}

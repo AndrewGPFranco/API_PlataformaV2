@@ -4,6 +4,7 @@ import com.gpf.ti.dtos.aula.AulaDto;
 import com.gpf.ti.dtos.aula.AulaEditadaDto;
 import com.gpf.ti.dtos.aula.DadosAulaDto;
 import com.gpf.ti.enums.TechnologyType;
+import com.gpf.ti.exception.AulaNotFoundException;
 import com.gpf.ti.model.Aula;
 import com.gpf.ti.services.AulaService;
 import jakarta.validation.Valid;
@@ -53,51 +54,67 @@ public class AulaController {
 
     @GetMapping("/dados/aula/{id}")
     public ResponseEntity<Map<String, Object>> obterAulaPeloId(@PathVariable Long id) {
-        Optional<Aula> aula = aulaService.obterAulaPorId(id);
+        try {
+            Optional<Aula> aula = aulaService.obterAulaPorId(id);
 
-        if(aula.isEmpty()) {
+            if (aula.isEmpty()) {
+                throw new AulaNotFoundException(id);
+            }
+
             Map<String, Object> response = new HashMap<>();
-            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            response.put("Aula Encontrada:", aula);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch (AulaNotFoundException e) {
+            Map<String, Object> corpoErro = new HashMap<>();
+            corpoErro.put("Erro", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpoErro);
         }
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("Aula Encontrada:", aula);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/dados/aula/{id}")
     public ResponseEntity<Map<String, Object>> deletarAulaPeloId(@PathVariable Long id) {
-        Optional<Aula> aula = aulaService.obterAulaPorId(id);
+        try {
+            Optional<Aula> aula = aulaService.obterAulaPorId(id);
 
-        if(aula.isEmpty()) {
+            if(aula.isEmpty()) {
+                throw new AulaNotFoundException(id);
+            }
+
+            this.aulaService.deletarAula(id);
+
             Map<String, Object> response = new HashMap<>();
-            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            response.put("Mensagem:", "Aula excluida com sucesso!");
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (AulaNotFoundException e) {
+            Map<String, Object> corpoErro = new HashMap<>();
+            corpoErro.put("Erro", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpoErro);
         }
-
-        this.aulaService.deletarAula(id);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("Mensagem:", "Aula excluida com sucesso!");
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PutMapping("/dados/atualizar/{id}")
     public ResponseEntity<Map<String, Object>> atualizarAula(@PathVariable Long id, @RequestBody AulaDto dto) {
-        AulaEditadaDto aulaAtualizada = aulaService.editarAula(dto, id);
+        try {
+            Optional<Aula> aula = aulaService.obterAulaPorId(id);
 
-        if(aulaAtualizada != null) {
+            if(aula.isEmpty()) {
+                throw new AulaNotFoundException(id);
+            }
+
+            AulaEditadaDto aulaAtualizada = aulaService.editarAula(dto, id);
+
             Map<String, Object> response = new HashMap<>();
             response.put("Aula atualizada!", aulaAtualizada);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            Map<String, Object> response = new HashMap<>();
-            response.put("Erro:", "Esse id não corresponde a nenhuma aula no sistema!");
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
+        } catch (AulaNotFoundException e) {
+            Map<String, Object> corpoErro = new HashMap<>();
+            corpoErro.put("Erro", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpoErro);
         }
     }
 

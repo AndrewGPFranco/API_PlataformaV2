@@ -34,6 +34,6 @@ public class AulaMapper {
         if(value == null) {
             return null;
         }
-        return new AulaEditadaDto(value.getTitulo(), value.getDescricao(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria());
+        return new AulaEditadaDto(value.getTitulo(), value.getDescricao(), value.getDuracao(), value.getImagem(), value.getUrl(), value.getTech(), value.getCategoria(), value.getCurso());
     }
 }

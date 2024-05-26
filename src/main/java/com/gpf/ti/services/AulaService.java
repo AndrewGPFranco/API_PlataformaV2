@@ -51,7 +51,13 @@ public class AulaService {
 
             aulaEditada.setTitulo(dto.titulo());
             aulaEditada.setDescricao(dto.descricao());
+            aulaEditada.setCadastro(dto.cadastro());
             aulaEditada.setDuracao(dto.duracao());
+            aulaEditada.setImagem(dto.imagem());
+            aulaEditada.setUrl(dto.url());
+            aulaEditada.setTech(dto.tech());
+            aulaEditada.setCategoria(dto.categoria());
+            aulaEditada.setCurso(dto.curso());
 
             aulaRepository.save(aulaEditada);
 
