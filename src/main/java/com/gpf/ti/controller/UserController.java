@@ -1,6 +1,6 @@
 package com.gpf.ti.controller;
 
-import com.gpf.ti.dtos.usuario.UserDTO;
+import com.gpf.ti.dtos.usuario.UserDto;
 import com.gpf.ti.services.AutenticacaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class UserController {
     private AutenticacaoService autenticacaoService;
 
     @PostMapping("/register")
-    public void registerUser(@Valid @RequestBody UserDTO dto) {
+    public void registerUser(@Valid @RequestBody UserDto dto) {
         autenticacaoService.registerUser(dto);
     }
 }

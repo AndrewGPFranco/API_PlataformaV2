@@ -3,7 +3,6 @@ package com.gpf.ti.controller;
 import com.gpf.ti.dtos.infra.DadosAutenticaoDto;
 import com.gpf.ti.dtos.infra.DadosTokenJwtDto;
 import com.gpf.ti.dtos.infra.DadosUsuarioIsAdmin;
-import com.gpf.ti.dtos.usuario.UserDTO;
 import com.gpf.ti.model.Usuario;
 import com.gpf.ti.services.AutenticacaoService;
 import com.gpf.ti.services.TokenService;

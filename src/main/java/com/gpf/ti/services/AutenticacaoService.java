@@ -1,6 +1,6 @@
 package com.gpf.ti.services;
 
-import com.gpf.ti.dtos.usuario.UserDTO;
+import com.gpf.ti.dtos.usuario.UserDto;
 import com.gpf.ti.exception.FormatoInvalidoException;
 import com.gpf.ti.exception.SenhaComPoucosCaracteresException;
 import com.gpf.ti.infra.security.SecurityConfigurations;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
@@ -42,7 +41,13 @@ public class AutenticacaoService implements UserDetailsService {
         return repository.getUsuarioWithAdmin(login);
     }
 
-    public void registerUser(@Valid UserDTO dto) {
+    /**
+     * Depois de algum tempo consegui encontrar o problema referente as validações...
+     * É preciso adicionar as validações no DTO também e eu não estava fazendo isso.
+     * Resolvi permancer com o código como esta, pois gostei do modo como é feito.
+     * @param dto - Parametro com os dados de registro do usuário
+     */
+    public void registerUser(@Valid UserDto dto) {
         if (dto.senha().length() < 5) {
             throw new SenhaComPoucosCaracteresException();
         }
