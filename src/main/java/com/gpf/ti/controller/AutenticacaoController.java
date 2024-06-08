@@ -69,9 +69,4 @@ public class AutenticacaoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @PostMapping("/register")
-    public void registerUser(@Valid @RequestBody UserDTO dto) {
-        autenticacaoService.registerUser(dto);
-    }
 }
