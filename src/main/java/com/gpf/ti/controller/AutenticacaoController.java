@@ -3,6 +3,7 @@ package com.gpf.ti.controller;
 import com.gpf.ti.dtos.infra.DadosAutenticaoDto;
 import com.gpf.ti.dtos.infra.DadosTokenJwtDto;
 import com.gpf.ti.dtos.infra.DadosUsuarioIsAdmin;
+import com.gpf.ti.dtos.usuario.UserDTO;
 import com.gpf.ti.model.Usuario;
 import com.gpf.ti.services.AutenticacaoService;
 import com.gpf.ti.services.TokenService;
@@ -67,5 +68,10 @@ public class AutenticacaoController {
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/register")
+    public void registerUser(@Valid @RequestBody UserDTO dto) {
+        autenticacaoService.registerUser(dto);
     }
 }
