@@ -26,7 +26,6 @@ public class Usuario implements UserDetails {
     @NotNull
     private String senha;
 
-    @NotNull
     private Boolean admin = false;
 
     @Override
