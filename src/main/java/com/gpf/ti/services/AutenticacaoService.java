@@ -61,6 +61,6 @@ public class AutenticacaoService implements UserDetailsService {
         }
 
         String senha = security.passwordEncoder().encode(dto.senha());
-        repository.registerUser(dto.login(), senha, dto.admin());
+        repository.registerUser(dto.login(), senha, dto.admin(), dto.nomeCompleto(), dto.dataNascimento(), dto.genero(), dto.telefone());
     }
 }
