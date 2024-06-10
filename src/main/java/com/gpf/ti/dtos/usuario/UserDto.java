@@ -7,5 +7,5 @@ import jakarta.validation.constraints.Size;
 public record UserDto(
         @NotNull String login,
         @NotNull String senha,
-        Boolean admin
+        @NotNull Boolean admin
 ) {}
