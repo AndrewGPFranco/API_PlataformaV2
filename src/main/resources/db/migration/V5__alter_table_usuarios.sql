@@ -1,0 +1,5 @@
+ALTER TABLE usuarios
+ADD nomeCompleto VARCHAR(300) NOT NULL,
+ADD dataNascimento DATE NOT NULL,
+ADD genero VARCHAR(10) NOT NULL,
+ADD telefone VARCHAR(11) NOT NULL;
