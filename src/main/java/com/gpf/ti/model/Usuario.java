@@ -39,8 +39,8 @@ public class Usuario implements UserDetails {
     private LocalDate dataNascimento;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @Column(name = "genero")
+    @Enumerated(EnumType.STRING)
     private GeneroType genero;
 
     @NotNull

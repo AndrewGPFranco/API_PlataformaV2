@@ -13,4 +13,9 @@ public enum GeneroType {
     public String getGenero() {
         return genero;
     }
+
+    @Override
+    public String toString() {
+        return this.genero;
+    }
 }
