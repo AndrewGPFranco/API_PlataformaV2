@@ -1,6 +1,7 @@
 package com.gpf.ti.model;
 
 import com.gpf.ti.enums.GeneroType;
+import com.gpf.ti.enums.LevelType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -50,6 +51,11 @@ public class Usuario implements UserDetails {
     @NotNull
     @Column(name = "admin")
     private Boolean admin = false;
+
+    @NotNull
+    @Column(name = "nivel")
+    @Enumerated(EnumType.STRING)
+    private LevelType nivel;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -114,4 +120,7 @@ public class Usuario implements UserDetails {
         return telefone;
     }
 
+    public LevelType getNivel() {
+        return nivel;
+    }
 }

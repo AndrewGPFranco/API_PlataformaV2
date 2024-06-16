@@ -1,0 +1,2 @@
+ALTER TABLE usuarios
+ADD nivel VARCHAR(50) NOT NULL;
