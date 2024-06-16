@@ -2,10 +2,11 @@ package com.gpf.ti.controller;
 
 import com.gpf.ti.dtos.infra.DadosAutenticaoDto;
 import com.gpf.ti.dtos.infra.DadosTokenJwtDto;
-import com.gpf.ti.dtos.infra.DadosUsuarioIsAdmin;
+import com.gpf.ti.dtos.infra.DadosUsuario;
 import com.gpf.ti.model.Usuario;
 import com.gpf.ti.services.AutenticacaoService;
 import com.gpf.ti.services.TokenService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ public class AutenticacaoController {
             var authentication = manager.authenticate(authenticationToken);
 
             var tokenJwt = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt, dados.login()));
+            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt));
         } catch (AuthenticationException e) {
             Map<String, Object> response = new HashMap<>();
             response.put("Erro", e.getMessage());
@@ -48,10 +49,10 @@ public class AutenticacaoController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<DadosUsuarioIsAdmin> getUser(@RequestParam String login) {
+    public ResponseEntity<DadosUsuario> getUser(@RequestParam String login, HttpSession session) {
         try {
-            Usuario user = autenticacaoService.getUser(login);
-            DadosUsuarioIsAdmin usuarioRetornado = new DadosUsuarioIsAdmin(user.getAdmin());
+            Usuario user = autenticacaoService.getUser(login, session);
+            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin());
             return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -59,10 +60,10 @@ public class AutenticacaoController {
     }
 
     @GetMapping("/user/admin")
-    public ResponseEntity<DadosUsuarioIsAdmin> getUserAdmin(@RequestParam String login) {
+    public ResponseEntity<DadosUsuario> getUserAdmin(@RequestParam String login) {
         try {
             Usuario user = autenticacaoService.getUserWithAdmin(login);
-            DadosUsuarioIsAdmin usuarioRetornado = new DadosUsuarioIsAdmin(user.getAdmin());
+            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin());
             return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

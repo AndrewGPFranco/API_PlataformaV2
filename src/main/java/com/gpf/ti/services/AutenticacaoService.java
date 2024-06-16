@@ -1,18 +1,24 @@
 package com.gpf.ti.services;
 
 import com.gpf.ti.dtos.usuario.UserDto;
+import com.gpf.ti.enums.GeneroType;
 import com.gpf.ti.exception.FormatoInvalidoException;
 import com.gpf.ti.exception.SenhaComPoucosCaracteresException;
 import com.gpf.ti.infra.security.SecurityConfigurations;
 import com.gpf.ti.model.Usuario;
 import com.gpf.ti.repository.UsuarioRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,13 +34,29 @@ public class AutenticacaoService implements UserDetailsService {
         this.repository = repository;
     }
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByLogin(username);
+        UserDetails detailsUser = repository.findByLogin(username);
+
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession(true);
+
+        session.setAttribute("login", detailsUser.getUsername());
+        session.setAttribute("nomeCompleto", ((Usuario) detailsUser).getNomeCompleto());
+        session.setAttribute("admin", ((Usuario) detailsUser).getAdmin());
+        return detailsUser;
     }
 
-    public Usuario getUser(String login) throws UsernameNotFoundException {
-        return repository.getUsuario(login);
+    public Usuario getUser(String login, HttpSession session) throws UsernameNotFoundException {
+        UserDetails user1 = loadUserByUsername(login);
+        if(login.equals(session.getAttribute("login"))) {
+            Usuario user = new Usuario();
+            user.setLogin((String) session.getAttribute("login"));
+            user.setNomeCompleto((String) session.getAttribute("nomeCompleto"));
+            user.setAdmin((Boolean) session.getAttribute("admin"));
+
+            return user;
+        }
+        throw new UsernameNotFoundException("Usuário não encontrado na sessão!");
     }
 
     public Usuario getUserWithAdmin(String login) throws UsernameNotFoundException {
