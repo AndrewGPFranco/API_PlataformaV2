@@ -39,7 +39,7 @@ public class AutenticacaoController {
             var authentication = manager.authenticate(authenticationToken);
 
             var tokenJwt = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt, dados.login()));
+            return ResponseEntity.ok(new DadosTokenJwtDto(tokenJwt));
         } catch (AuthenticationException e) {
             Map<String, Object> response = new HashMap<>();
             response.put("Erro", e.getMessage());
