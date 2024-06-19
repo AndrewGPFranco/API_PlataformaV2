@@ -2,6 +2,7 @@ package com.gpf.ti.services;
 
 import com.gpf.ti.dtos.usuario.UserDto;
 import com.gpf.ti.enums.GeneroType;
+import com.gpf.ti.enums.LevelType;
 import com.gpf.ti.exception.FormatoInvalidoException;
 import com.gpf.ti.exception.SenhaComPoucosCaracteresException;
 import com.gpf.ti.infra.security.SecurityConfigurations;
@@ -43,6 +44,7 @@ public class AutenticacaoService implements UserDetailsService {
         session.setAttribute("login", detailsUser.getUsername());
         session.setAttribute("nomeCompleto", ((Usuario) detailsUser).getNomeCompleto());
         session.setAttribute("admin", ((Usuario) detailsUser).getAdmin());
+        session.setAttribute("nivel", ((Usuario) detailsUser).getNivel());
         return detailsUser;
     }
 
@@ -53,6 +55,7 @@ public class AutenticacaoService implements UserDetailsService {
             user.setLogin((String) session.getAttribute("login"));
             user.setNomeCompleto((String) session.getAttribute("nomeCompleto"));
             user.setAdmin((Boolean) session.getAttribute("admin"));
+            user.setNivel((LevelType) session.getAttribute("nivel"));
 
             return user;
         }
@@ -83,6 +86,6 @@ public class AutenticacaoService implements UserDetailsService {
         }
 
         String senha = security.passwordEncoder().encode(dto.senha());
-        repository.registerUser(dto.login(), senha, dto.admin(), dto.nomeCompleto(), dto.dataNascimento(), dto.genero(), dto.telefone());
+        repository.registerUser(dto.login(), senha, dto.admin(), dto.nomeCompleto(), dto.dataNascimento(), dto.genero(), dto.telefone(), LevelType.BRONZE);
     }
 }

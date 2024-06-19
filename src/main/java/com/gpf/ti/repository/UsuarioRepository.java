@@ -1,6 +1,7 @@
 package com.gpf.ti.repository;
 
 import com.gpf.ti.enums.GeneroType;
+import com.gpf.ti.enums.LevelType;
 import com.gpf.ti.model.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Modifying
     @Transactional
-    @Query("INSERT INTO Usuario (login, senha, admin, nomeCompleto, dataNascimento, genero, telefone) VALUES (:login, :senha, :admin, :nomeCompleto, :dataNascimento, :genero, :telefone)")
-    void registerUser(@Param("login") String login, @Param("senha") String senha, @Param("admin") Boolean admin, @Param("nomeCompleto") String nomeCompleto, @Param("dataNascimento") LocalDate dataNascimento, @Param("genero") GeneroType genero, @Param("telefone") String telefone);
+    @Query("INSERT INTO Usuario (login, senha, admin, nomeCompleto, dataNascimento, genero, telefone, nivel) VALUES (:login, :senha, :admin, :nomeCompleto, :dataNascimento, :genero, :telefone, :nivel)")
+    void registerUser(@Param("login") String login, @Param("senha") String senha, @Param("admin") Boolean admin, @Param("nomeCompleto") String nomeCompleto, @Param("dataNascimento") LocalDate dataNascimento, @Param("genero") GeneroType genero, @Param("telefone") String telefone, @Param("nivel")LevelType nivel);
 }
