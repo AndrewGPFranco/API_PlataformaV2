@@ -52,7 +52,7 @@ public class AutenticacaoController {
     public ResponseEntity<DadosUsuario> getUser(@RequestParam String login, HttpSession session) {
         try {
             Usuario user = autenticacaoService.getUser(login, session);
-            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin());
+            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin(), user.getNivel());
             return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,7 +63,7 @@ public class AutenticacaoController {
     public ResponseEntity<DadosUsuario> getUserAdmin(@RequestParam String login) {
         try {
             Usuario user = autenticacaoService.getUserWithAdmin(login);
-            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin());
+            DadosUsuario usuarioRetornado = new DadosUsuario(user.getLogin(), user.getNomeCompleto(),user.getAdmin(), user.getNivel());
             return new ResponseEntity<>(usuarioRetornado, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

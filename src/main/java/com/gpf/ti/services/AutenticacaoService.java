@@ -44,6 +44,7 @@ public class AutenticacaoService implements UserDetailsService {
         session.setAttribute("login", detailsUser.getUsername());
         session.setAttribute("nomeCompleto", ((Usuario) detailsUser).getNomeCompleto());
         session.setAttribute("admin", ((Usuario) detailsUser).getAdmin());
+        session.setAttribute("nivel", ((Usuario) detailsUser).getNivel());
         return detailsUser;
     }
 
@@ -54,6 +55,7 @@ public class AutenticacaoService implements UserDetailsService {
             user.setLogin((String) session.getAttribute("login"));
             user.setNomeCompleto((String) session.getAttribute("nomeCompleto"));
             user.setAdmin((Boolean) session.getAttribute("admin"));
+            user.setNivel((LevelType) session.getAttribute("nivel"));
 
             return user;
         }
