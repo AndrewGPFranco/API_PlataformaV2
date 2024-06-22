@@ -37,7 +37,7 @@ public class AulaService {
 
     public Optional<Aula> obterAulaPorId(Long id) {
         Optional<Aula> aula = this.aulaRepository.findById(id);
-        if(aula != null) {
+        if(aula.isPresent()) {
             Integer contagem = aula.get().getVisualizacoes();
             Integer novaVisualizacao = contagem + 1;
             aulaRepository.atualizarContagemDeVisualizacoes(novaVisualizacao, aula.get().getId());
