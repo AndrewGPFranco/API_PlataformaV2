@@ -9,8 +9,8 @@ import com.gpf.ti.model.Aula;
 import com.gpf.ti.repository.AulaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AulaService {
@@ -75,5 +75,13 @@ public class AulaService {
 
     public List<Aula> buscarAulaPorTecnologia(TechnologyType tech) {
         return aulaRepository.aulaPorTech(tech);
+    }
+
+    public List<Aula> videosMaisAssistidos(int limite) {
+        return aulaRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparingInt(Aula::getVisualizacoes).reversed())
+                .limit(limite)
+                .collect(Collectors.toList());
     }
 }
