@@ -36,7 +36,13 @@ public class AulaService {
     }
 
     public Optional<Aula> obterAulaPorId(Long id) {
-        return this.aulaRepository.findById(id);
+        Optional<Aula> aula = this.aulaRepository.findById(id);
+        if(aula != null) {
+            Integer contagem = aula.get().getVisualizacoes();
+            Integer novaVisualizacao = contagem + 1;
+            aulaRepository.atualizarContagemDeVisualizacoes(novaVisualizacao, aula.get().getId());
+        }
+        return aula;
     }
 
     public void deletarAula(Long id) {

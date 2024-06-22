@@ -62,7 +62,7 @@ public class Aula {
     private String curso;
 
     @Column(name = "visualizacoes")
-    private Integer contagem = 0;
+    private Integer visualizacoes = 0;
 
     public Aula() {}
 
