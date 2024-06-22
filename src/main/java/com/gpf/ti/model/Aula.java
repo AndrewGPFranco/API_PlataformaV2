@@ -61,6 +61,9 @@ public class Aula {
     @Column(name = "curso")
     private String curso;
 
+    @Column(name = "visualizacoes")
+    private Integer contagem = 0;
+
     public Aula() {}
 
     public Aula(Long id, String nomeDaAula) {}
