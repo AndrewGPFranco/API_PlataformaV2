@@ -122,4 +122,9 @@ public class AulaController {
     public List<Aula> buscarAulaPorTecnologia(@PathVariable TechnologyType tech) {
         return aulaService.buscarAulaPorTecnologia(tech);
     }
+
+    @GetMapping("/aulas/maisvistas")
+    public List<Aula> aulasMaisVistas(@RequestParam int limite) {
+        return aulaService.videosMaisAssistidos(limite);
+    }
 }
